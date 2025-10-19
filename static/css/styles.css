@@ -1,0 +1,20 @@
+:root{--bg:#0f1720;--card:#0b1220;--muted:#9aa4b2;--accent:#5b9bd5}
+*{box-sizing:border-box}
+body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto; margin:0; background:linear-gradient(180deg,#f7f9fb,#eef2f6); color:#0b1220}
+.container{max-width:900px;margin:28px auto;padding:16px}
+.product-card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 6px 24px rgba(11,18,32,0.06);}
+.product-card h1{margin:0 0 6px}
+.subtitle{color:var(--muted);margin-bottom:14px}
+.buy-area{display:flex;align-items:center;gap:12px}
+.price{font-weight:700;font-size:20px}
+.btn{padding:8px 14px;border-radius:10px;border:0;background:var(--accent);color:white;cursor:pointer}
+.btn.primary{background:#2b8bd6}
+.reviews{margin-top:20px}
+.review-form, .reply-form{background:#fff;padding:12px;border-radius:8px;margin-bottom:12px}
+.row{display:flex;gap:10px}
+input, textarea{width:100%;padding:8px;border:1px solid #e6eef6;border-radius:8px}
+.reviews-list .review{background:#fff;padding:14px;border-radius:10px;margin-bottom:10px}
+.head{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.rating{color:#f59e0b;font-weight:600}
+.replies{margin-top:8px;padding-left:8px;border-left:2px solid #eef2f6}
+.reply{background:#fbfdff;padding:8px;border-radius:8px;margin-top:6px}

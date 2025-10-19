@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Товар — Отзывы</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <section class="product">
+        <div class="product-card">
+          <h1>Название товара</h1>
+          <p class="subtitle">Краткое описание продукта, ключевые особенности.</p>
+          <div class="buy-area">
+            <div class="price">€199</div>
+            <button class="btn">Купить</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <h2>Отзывы</h2>
+
+        <form class="review-form" method="post" action="/add-review">
+          {{ form.hidden_tag() }}
+          <div class="row">
+            {{ form.author(size=20, placeholder='Ваше имя') }}
+            {{ form.rating(placeholder='Оценка 1-5') }}
+          </div>
+          <div>
+            {{ form.content(rows=4, placeholder='Ваш отзыв') }}
+          </div>
+          <div>
+            {{ form.submit(class_='btn primary') }}
+          </div>
+        </form>
+
+        <div class="reviews-list">
+          {% for review in reviews %}
+          <article class="review" id="review-{{ review.id }}">
+            <div class="head">
+              <strong>{{ review.author }}</strong>
+              <span class="rating">{{ review.rating }}★</span>
+              <time>{{ review.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
+            </div>
+            <p class="content">{{ review.content }}</p>
+
+            <div class="replies">
+              {% for r in review.replies.order_by('created_at') %}
+              <div class="reply">
+                <strong>{{ r.author }}</strong>
+                <time>{{ r.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
+                <p>{{ r.content }}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <form class="reply-form" method="post" action="/reviews/{{ review.id }}/reply">
+              {{ reply_form.hidden_tag() }}
+              <div class="row">
+                {{ reply_form.author(size=20, placeholder='Ваше имя') }}
+              </div>
+              <div>
+                {{ reply_form.content(rows=2, placeholder='Ответ на отзыв') }}
+              </div>
+              <div>
+                {{ reply_form.submit(class_='btn') }}
+              </div>
+            </form>
+          </article>
+          {% endfor %}
+        </div>
+
+      </section>
+    </main>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
