@@ -33,11 +33,11 @@ class Reply(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-def to_dict(self):
-    return {
-    'id': self.id,
-    'review_id': self.review_id,
-    'author': self.author,
-    'content': self.content,
-    'created_at': self.created_at.isoformat()
-    }
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'review_id': self.review_id,
+        'author': self.author,
+        'content': self.content,
+        'created_at': self.created_at.isoformat()
+        }
