@@ -14,15 +14,15 @@ class Review(db.Model):
     replies = db.relationship('Reply', backref='review', cascade='all, delete-orphan', lazy='dynamic')
 
 
-def to_dict(self):
-    return {
-    'id': self.id,
-    'author': self.author,
-    'rating': self.rating,
-    'content': self.content,
-    'created_at': self.created_at.isoformat(),
-    'replies': [r.to_dict() for r in self.replies.order_by(Reply.created_at.asc())]
-    }
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'author': self.author,
+        'rating': self.rating,
+        'content': self.content,
+        'created_at': self.created_at.isoformat(),
+        'replies': [r.to_dict() for r in self.replies.order_by(Reply.created_at.asc())]
+        }
 
 
 class Reply(db.Model):
